@@ -1,0 +1,31 @@
+[package]
+name = "botguard-rs"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+description = "YouTube BotGuard attestation and WebPO token minting in embedded QuickJS"
+license = "MIT"
+repository = "https://github.com/moderntube/botguard-rs"
+readme = "README.md"
+keywords = ["youtube", "botguard", "po-token", "quickjs"]
+publish = false
+
+[lib]
+name = "botguard"
+path = "src/lib.rs"
+
+[[bin]]
+name = "botguard-rs"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[features]
+cli = ["dep:ureq"]
+
+[dependencies]
+rquickjs = "0.12"
+serde_json = "1"
+ureq = { version = "2", features = ["json"], optional = true }
+
+[profile.dev.package.rquickjs-sys]
+opt-level = 3
